@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Interactive Photo Gallery</title>
+<style>
+  #image {
+    width: 400px;
+    height: 300px;
+    border: 2px solid #333;
+    text-align: center;
+    line-height: 300px;
+    background-size: cover;
+    background-position: center;
+    margin-bottom: 20px;
+  }
+
+  .thumb {
+    width: 100px;
+    height: 75px;
+    margin: 5px;
+    cursor: pointer;
+  }
+</style>
+</head>
+<body>
+
+<div id="image">Hover over an image below to display here.</div>
+
+<img src="img/jngchl.jpg" alt="JeongCheol" class="thumb" 
+     onmouseover="upDate(this)" onmouseout="undo()">
+<img src="img/mnwn.jpg" alt="MinWon" class="thumb" 
+     onmouseover="upDate(this)" onmouseout="undo()">
+<img src="img/sksoo.jpg" alt="SeokSoo" class="thumb" 
+     onmouseover="upDate(this)" onmouseout="undo()">
+
+<script>
+  function upDate(previewPic) {
+    // Check if the event is triggering
+    console.log("Mouse over event triggered");
+
+    // Log previewPic info
+    console.log("Image src: " + previewPic.src);
+    console.log("Image alt: " + previewPic.alt);
+
+    // Change the text of the div with id "image"
+    const imageDiv = document.getElementById("image");
+    imageDiv.textContent = previewPic.alt;
+
+    // Change the background image of the div with id "image"
+    imageDiv.style.backgroundImage = `url('${previewPic.src}')`;
+  }
+
+  function undo() {
+    const imageDiv = document.getElementById("image");
+
+    // Reset the text
+    imageDiv.textContent = "Hover over an image below to display here.";
+
+    // Reset the background image
+    imageDiv.style.backgroundImage = "url('')";
+  }
+</script>
+
+</body>
+</html>
